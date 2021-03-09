@@ -61,3 +61,7 @@ button {
   background-color: transparent;
   color: white;
 }
+
+button:hover {
+  background-color: #903749;
+}
