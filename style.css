@@ -10,7 +10,7 @@ body {
   background-color: #2b2e4a;
 }
 
-h3, button {
+h1, h2, h3, p, span, button {
   font-family: Space Mono, sans-serif;
 }
 
@@ -62,6 +62,7 @@ button {
   color: white;
 }
 
-button:hover {
+button:hover, .active {
   background-color: #903749;
+  transition: all .5s ease;
 }
