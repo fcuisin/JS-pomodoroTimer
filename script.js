@@ -59,6 +59,7 @@ function toggleClock() {
 }
 
 function resetTimer() {
+
   clearInterval(setTimer);
   isRunning = false;
   timeLeft = 1500
@@ -70,17 +71,22 @@ function resetTimer() {
 
   outline.style.strokeDashoffset = outlineLength;
   displayTime(timeLeft);
+
 }
 
 
 function updateCircle() {
+
   outline.style.strokeDasharray = outlineLength;
   outline.style.strokeDashoffset = (timeLeft * outlineLength) / 1500;
+
 }
 
 function initCircle() {
+
   outline.style.strokeDasharray = outlineLength;
   outline.style.strokeDashoffset = outlineLength;
+
 }
 
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
