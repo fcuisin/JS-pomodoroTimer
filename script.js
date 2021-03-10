@@ -6,6 +6,18 @@ let isRunning = false
 let timeLeft = 1500;
 let shortBreak = 500;
 
+function displayTime(time) {
+
+  let seconds = time % 60
+
+  if(seconds < 10) {
+    seconds = `0${seconds}`
+  }
+
+  const minutes = Math.floor((time / 60) % 60);
+  timer.innerText = `${minutes}:${seconds}`
+}
+
 
 function toggleClock() {
 
