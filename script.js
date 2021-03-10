@@ -6,6 +6,7 @@ const timer = document.querySelector(".time-display");
 let isRunning = false
 let timeLeft = 1500;
 let shortBreak = 500;
+let startCounter = 0;
 
 function displayTime(time) {
 
@@ -24,21 +25,32 @@ function toggleClock() {
 
   if(isRunning) {
 
-    startButton.classList.add("active");
-    stopButton.classList.remove("active");
+    startCounter++;
 
-    setTimer = setInterval(() => {
-      if(timeLeft > 0) {
-        timeLeft--;
-        displayTime(timeLeft);
-      } else {
-        startButton.classList.remove("active");
-      }
-    }, 1000)
+    console.log(startCounter);
+
+    if(startCounter === 1) {
+
+      startButton.classList.add("active");
+      stopButton.classList.remove("active");
+
+      setTimer = setInterval(() => {
+        if(timeLeft > 0) {
+          timeLeft--;
+          displayTime(timeLeft);
+        } else {
+          startButton.classList.remove("active");
+        }
+      }, 1000)
+
+    }
 
   } else {
 
     clearInterval(setTimer);
+    console.log(startCounter);
+    startCounter = 0;
+    console.log(startCounter);
     startButton.classList.remove("active");
     stopButton.classList.add("active");
 
@@ -50,6 +62,7 @@ function resetTimer() {
   clearInterval(setTimer);
   isRunning = false;
   timeLeft = 1500
+  startCounter = 0;
 
   document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
     node.classList.remove("active");
