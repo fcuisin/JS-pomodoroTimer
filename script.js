@@ -2,13 +2,16 @@ const startButton = document.querySelector("#pomodoro-start");
 const stopButton = document.querySelector("#pomodoro-stop");
 const resetButton = document.querySelector("#pomodoro-reset");
 const timer = document.querySelector(".time-display");
+const outline = document.querySelector(".moving-outline circle");
+const outlineLength = outline.getTotalLength();
 
 let isRunning = false
 let timeLeft = 1500;
-let shortBreak = 500;
 let startCounter = 0;
 
 function displayTime(time) {
+
+  const secondsLeft = time;
 
   let seconds = time % 60
 
@@ -27,8 +30,6 @@ function toggleClock() {
 
     startCounter++;
 
-    console.log(startCounter);
-
     if(startCounter === 1) {
 
       startButton.classList.add("active");
@@ -37,6 +38,7 @@ function toggleClock() {
       setTimer = setInterval(() => {
         if(timeLeft > 0) {
           timeLeft--;
+          updateCircle()
           displayTime(timeLeft);
         } else {
           startButton.classList.remove("active");
@@ -48,9 +50,7 @@ function toggleClock() {
   } else {
 
     clearInterval(setTimer);
-    console.log(startCounter);
     startCounter = 0;
-    console.log(startCounter);
     startButton.classList.remove("active");
     stopButton.classList.add("active");
 
@@ -68,12 +68,23 @@ function resetTimer() {
     node.classList.remove("active");
   });
 
+  outline.style.strokeDashoffset = outlineLength;
   displayTime(timeLeft);
 }
 
 
+function updateCircle() {
+  outline.style.strokeDasharray = outlineLength;
+  outline.style.strokeDashoffset = (timeLeft * outlineLength) / 1500;
+}
+
+function initCircle() {
+  outline.style.strokeDasharray = outlineLength;
+  outline.style.strokeDashoffset = outlineLength;
+}
+
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
-resetButton.addEventListener('click', resetTimer)
-
+resetButton.addEventListener('click', resetTimer);
+initCircle();
 
