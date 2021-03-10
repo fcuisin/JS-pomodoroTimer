@@ -1,5 +1,6 @@
 const startButton = document.querySelector("#pomodoro-start");
 const stopButton = document.querySelector("#pomodoro-stop");
+const resetButton = document.querySelector("#pomodoro-reset");
 const timer = document.querySelector(".time-display");
 
 let isRunning = false
@@ -45,9 +46,21 @@ function toggleClock() {
 
 }
 
+function resetTimer() {
+  clearInterval(setTimer);
+  isRunning = false;
+  timeLeft = 1500
+
+  document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
+    node.classList.remove("active");
+  });
+
+  displayTime(timeLeft);
+}
+
 
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
-
+resetButton.addEventListener('click', resetTimer)
 
 
