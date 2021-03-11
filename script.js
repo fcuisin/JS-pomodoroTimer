@@ -6,12 +6,11 @@ const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
 
 let isRunning = false
-let timeLeft = 1500;
+let timerDuration = 1500
+let timeLeft = timerDuration;
 let startCounter = 0;
 
 function displayTime(time) {
-
-  const secondsLeft = time;
 
   let seconds = time % 60
 
@@ -69,7 +68,7 @@ function resetTimer() {
     node.classList.remove("active");
   });
 
-  outline.style.strokeDashoffset = outlineLength;
+  initCircle();
   displayTime(timeLeft);
 
 }
@@ -77,8 +76,7 @@ function resetTimer() {
 
 function updateCircle() {
 
-  outline.style.strokeDasharray = outlineLength;
-  outline.style.strokeDashoffset = (timeLeft * outlineLength) / 1500;
+  outline.style.strokeDashoffset = (timeLeft * outlineLength) / timerDuration;
 
 }
 
