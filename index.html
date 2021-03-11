@@ -5,23 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro Timer</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 </head>
 <body>
   <div id="player-container">
 
     <div class="player">
       <svg class="track-outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="226.5" cy="226.5" r="216.5" stroke="#53354a" stroke-width="20"/>
-      </svg>
-      <svg class="moving-outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="226.5" cy="226.5" r="216.5" stroke="#903749" stroke-width="20"/>
       </svg>
+      <svg class="moving-outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="226.5" cy="226.5" r="216.5" stroke="#2b2e4a" stroke-width="20"/>
+      </svg>
 
-      <h3 class="time-display">0:00</h3>
+      <h3 class="time-display">25:00</h3>
 
       <div id="player-actions">
-        <button id="pomodoro-stop">Short break</button>
-        <button id="pomodoro-stop">Long break</button>
+        <button id="pomodoro-start"><i class="fas fa-play"></i></button>
+        <button id="pomodoro-stop"><i class="fas fa-pause"></i></button>
+        <button id="pomodoro-reset"><i class="fas fa-redo"></i></button>
       </div>
     </div>
 
