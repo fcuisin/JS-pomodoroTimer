@@ -6,7 +6,7 @@ const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
 
 let isRunning = false
-let timerDuration = 1500
+let timerDuration = 1500;
 let timeLeft = timerDuration;
 let startCounter = 0;
 
@@ -41,6 +41,8 @@ function toggleClock() {
           displayTime(timeLeft);
         } else {
           startButton.classList.remove("active");
+          clearInterval(setTimer);
+          document.querySelector(".end-sound").play();
         }
       }, 1000)
 
