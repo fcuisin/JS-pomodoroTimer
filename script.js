@@ -9,7 +9,7 @@ const outlineLength = outline.getTotalLength();
 
 let isRunning = false
 let timerDuration = 1500;
-let timeLeft = timerDuration;
+let timeLeft = 1500;
 let startCounter = 0;
 
 function displayTime(time) {
@@ -65,7 +65,8 @@ function resetTimer() {
 
   clearInterval(setTimer);
   isRunning = false;
-  timeLeft = 1500
+  timerDuration = 1500
+  timeLeft = timerDuration;
   startCounter = 0;
 
   document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
@@ -92,8 +93,6 @@ function initCircle() {
 }
 
 function shortBreak() {
-
-  console.log("yes");
 
   timerDuration = 900;
   timeLeft = timerDuration;
