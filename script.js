@@ -1,13 +1,15 @@
 const startButton = document.querySelector("#pomodoro-start");
 const stopButton = document.querySelector("#pomodoro-stop");
 const resetButton = document.querySelector("#pomodoro-reset");
+const breakButton = document.querySelector("#pomodoro-break");
 const timer = document.querySelector(".time-display");
 const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
 
+
 let isRunning = false
 let timerDuration = 1500;
-let timeLeft = timerDuration;
+let timeLeft = 1500;
 let startCounter = 0;
 
 function displayTime(time) {
@@ -63,7 +65,8 @@ function resetTimer() {
 
   clearInterval(setTimer);
   isRunning = false;
-  timeLeft = 1500
+  timerDuration = 1500
+  timeLeft = timerDuration;
   startCounter = 0;
 
   document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
@@ -89,6 +92,25 @@ function initCircle() {
 
 }
 
+function shortBreak() {
+
+  timerDuration = 900;
+  timeLeft = timerDuration;
+  isRunning = false;
+  startCounter = 0;
+
+  clearInterval(setTimer);
+
+  document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
+    node.classList.remove("active");
+  });
+
+  initCircle();
+  displayTime(timeLeft)
+
+}
+
+breakButton.addEventListener('click', shortBreak );
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
 resetButton.addEventListener('click', resetTimer);
