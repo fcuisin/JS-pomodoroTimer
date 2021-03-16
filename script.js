@@ -94,7 +94,7 @@ function initCircle() {
 
 function shortBreak() {
 
-  timerDuration = 900;
+  timerDuration = 300;
   timeLeft = timerDuration;
   isRunning = false;
   startCounter = 0;

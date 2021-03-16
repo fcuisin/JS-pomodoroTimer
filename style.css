@@ -7,11 +7,15 @@
 }
 
 body {
-  background-color: #2b2e4a;
+  background-color: #0e2431;
 }
 
 h1, h2, h3, p, span, button {
   font-family: Space Mono, sans-serif;
+}
+
+p {
+  font-size: 12px;
 }
 
 #player-container {
@@ -23,7 +27,7 @@ h1, h2, h3, p, span, button {
   position: relative;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   flex: 1;
@@ -57,12 +61,16 @@ button {
   border-radius: 10px;
   cursor: pointer;
   outline: 0;
-  border: 1px solid #903749;
+  border: 2px solid #ffa41b;
   background-color: transparent;
   color: white;
 }
 
 button:hover, .active {
-  background-color: #903749;
+  background-color: #ffa41b;
   transition: all .5s ease;
+}
+
+.active .fas {
+  color: #0e2431;
 }
