@@ -2,9 +2,11 @@ const startButton = document.querySelector("#pomodoro-start");
 const stopButton = document.querySelector("#pomodoro-stop");
 const resetButton = document.querySelector("#pomodoro-reset");
 const breakButton = document.querySelector("#pomodoro-break");
+const form = document.querySelector("#actions-form");
 const timer = document.querySelector(".time-display");
 const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
+const listOfActions = [];
 
 
 let isRunning = false
@@ -105,11 +107,44 @@ function shortBreak() {
     node.classList.remove("active");
   });
 
+  createAction();
   initCircle();
   displayTime(timeLeft)
 
 }
 
+function createAction() {
+
+  event.preventDefault();
+
+  const input = document.getElementById("action").value;
+  const list = document.getElementById("actions-list");
+  let data = '';
+
+
+  if (event.type === "submit") {
+
+    if (input.length != '') {
+      listOfActions.push(input);
+    }
+
+  } else {
+
+    listOfActions.push("Break");
+
+  }
+
+  listOfActions.forEach((action) => {
+    data += `<li>${action}</li>`
+  });
+
+  list.innerHTML = data;
+
+  form.reset();
+
+}
+
+form.addEventListener('submit', createAction);
 breakButton.addEventListener('click', shortBreak );
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
