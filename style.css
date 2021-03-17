@@ -10,17 +10,21 @@ body {
   background-color: #0e2431;
 }
 
-h1, h2, h3, p, span, button {
-  font-family: Space Mono, sans-serif;
+header {
+  height: 10vh;
+  text-align: center;
+  padding-top: 50px;
 }
 
-p {
-  font-size: 12px;
+h1, h2, h3, p, span, ul, li, button {
+  font-family: Space Mono, sans-serif;
+  color: white;
 }
 
 #player-container {
-  height: 100vh;
+  height: 90vh;
   margin: 0 auto;
+  display: flex;
 }
 
 .player {
@@ -43,7 +47,6 @@ p {
 }
 
 .time-display {
-  color: white;
   font-size: 50px;
 }
 
@@ -73,4 +76,58 @@ button:hover, .active {
 
 .active .fas {
   color: #0e2431;
+}
+
+#actions {
+  border-left: 2px solid #f0f5f9;
+  width: 40%;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  margin-top: 100px;
+  padding: 0px 30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+#actions-title {
+  text-align: center;
+  margin: 10px 0px 40px 0px;
+  font-size: 20px;
+}
+
+#actions-list {
+  margin: 20px 0px;
+  list-style: none;
+}
+
+#actions-submit {
+  margin: 0;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  background-color: transparent;
+  border-bottom: 2px solid #f0f5f9;
+  border-width: 0 0 2px;
+  outline: 0;
+  color: white;
+  font-family: Space Mono, sans-serif;
+  margin: 0px 10px;
+  padding: 10px;
+  flex: 1;
+}
+
+@media screen and (max-width: 640px) {
+  #player-container {
+    display:block;
+  }
+
+  #actions {
+    margin: 0;
+    width: 100%;
+    border: 0;
+  }
 }
