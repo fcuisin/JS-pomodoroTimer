@@ -2,9 +2,12 @@ const startButton = document.querySelector("#pomodoro-start");
 const stopButton = document.querySelector("#pomodoro-stop");
 const resetButton = document.querySelector("#pomodoro-reset");
 const breakButton = document.querySelector("#pomodoro-break");
+const form = document.querySelector("#actions-form");
 const timer = document.querySelector(".time-display");
 const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
+const list = document.getElementById("actions-list");
+const listOfActions = JSON.parse(localStorage.getItem('items')) || [];
 
 
 let isRunning = false
@@ -105,14 +108,53 @@ function shortBreak() {
     node.classList.remove("active");
   });
 
+  createAction();
   initCircle();
   displayTime(timeLeft)
 
 }
 
+function createAction() {
+
+  event.preventDefault();
+
+  const input = document.getElementById("action").value;
+  let data = '';
+
+
+  if (event.type === "submit") {
+
+    if (input.length != '') {
+      listOfActions.push(input);
+      localStorage.setItem('items', JSON.stringify(listOfActions))
+      this.reset();
+    }
+
+  } else {
+
+    listOfActions.push("Break");
+
+  }
+
+  populateList(listOfActions, list)
+
+}
+
+function populateList(listOfActions = [], list) {
+
+  console.log(listOfActions);
+
+  list.innerHTML = listOfActions.map(action => {
+    return `<li> ${action} </li>`
+  }).join('');
+
+}
+
+form.addEventListener('submit', createAction);
 breakButton.addEventListener('click', shortBreak );
 startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
 resetButton.addEventListener('click', resetTimer);
 initCircle();
+populateList(listOfActions, list);
 
