@@ -6,7 +6,8 @@ const form = document.querySelector("#actions-form");
 const timer = document.querySelector(".time-display");
 const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();
-const listOfActions = [];
+const list = document.getElementById("actions-list");
+const listOfActions = JSON.parse(localStorage.getItem('items')) || [];
 
 
 let isRunning = false
@@ -118,7 +119,6 @@ function createAction() {
   event.preventDefault();
 
   const input = document.getElementById("action").value;
-  const list = document.getElementById("actions-list");
   let data = '';
 
 
@@ -126,6 +126,8 @@ function createAction() {
 
     if (input.length != '') {
       listOfActions.push(input);
+      localStorage.setItem('items', JSON.stringify(listOfActions))
+      this.reset();
     }
 
   } else {
@@ -134,13 +136,17 @@ function createAction() {
 
   }
 
-  listOfActions.forEach((action) => {
-    data += `<li>${action}</li>`
-  });
+  populateList(listOfActions, list)
 
-  list.innerHTML = data;
+}
 
-  form.reset();
+function populateList(listOfActions = [], list) {
+
+  console.log(listOfActions);
+
+  list.innerHTML = listOfActions.map(action => {
+    return `<li> ${action} </li>`
+  }).join('');
 
 }
 
@@ -150,4 +156,5 @@ startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
 resetButton.addEventListener('click', resetTimer);
 initCircle();
+populateList(listOfActions, list);
 
