@@ -166,14 +166,19 @@ function createAction() {
 
   }
 
-  populateList(listOfActions, list)
+  populateList()
 
 }
 
-function populateList(listOfActions = [], list) {
+function populateList() {
 
   list.innerHTML = listOfActions.map(action => {
-    return `<li>${action.name} - ${action.time}</li>`
+     return `
+      <div class="action-item">
+        <li>${action.name} - ${action.time}</li>
+        <button class="delete-action"><i class="far fa-trash-alt"></i></button>
+      </div>
+    `
   }).join('');
 
 }
@@ -184,5 +189,5 @@ startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
 resetButton.addEventListener('click', resetTimer);
 initCircle();
-populateList(listOfActions, list);
+populateList();
 

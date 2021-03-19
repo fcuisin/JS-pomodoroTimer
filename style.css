@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 
 * {
   padding: 0;
@@ -16,8 +17,8 @@ header {
   padding-top: 50px;
 }
 
-h1, h2, h3, p, span, ul, li, button {
-  font-family: Space Mono, sans-serif;
+h1, h2, h3, p, span, ul, li, button, input {
+  font-family: Rubik, sans-serif;
   color: white;
 }
 
@@ -48,6 +49,7 @@ h1, h2, h3, p, span, ul, li, button {
 
 .time-display {
   font-size: 50px;
+  font-family: Space Mono, sans-serif;
 }
 
 #player-actions{
@@ -58,7 +60,7 @@ h1, h2, h3, p, span, ul, li, button {
   bottom: 10%;
 }
 
-button {
+.player-btn, #actions-submit {
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
@@ -69,7 +71,7 @@ button {
   color: white;
 }
 
-button:hover, .active {
+.player-btn:hover, #actions-submit:hover, .active {
   background-color: #ffa41b;
   transition: all .5s ease;
 }
@@ -103,6 +105,20 @@ button:hover, .active {
   margin: 0;
 }
 
+.delete-action {
+  border: 0;
+  color: #ffa41b;
+  background-color: transparent;
+  cursor: pointer;
+  outline: 0;
+  margin-left: 20px;
+}
+
+.action-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
 form {
   display: flex;
   align-items: center;
@@ -114,8 +130,7 @@ input[type="text"] {
   border-width: 0 0 2px;
   outline: 0;
   color: white;
-  font-family: Space Mono, sans-serif;
-  margin: 0px 10px;
+  margin: 0px 10px 0px 0px;
   padding: 10px;
   flex: 1;
 }
