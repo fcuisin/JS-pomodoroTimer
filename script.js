@@ -119,13 +119,29 @@ function createAction() {
   event.preventDefault();
 
   const input = document.getElementById("action").value;
-  let data = '';
+  let action = {
+    name: '',
+    time: '',
+  };
+  const date = new Date();
 
 
   if (event.type === "submit") {
 
     if (input.length != '') {
-      listOfActions.push(input);
+      if (date.getMinutes < 10) {
+        action = {
+          name: input,
+          time: `${date.getHours()}:0${date.getMinutes()}`
+        }
+      } else {
+        action = {
+          name: input,
+          time: `${date.getHours()}:${date.getMinutes()}`
+        }
+      }
+
+      listOfActions.push(action);
       localStorage.setItem('items', JSON.stringify(listOfActions))
       this.reset();
     }
@@ -142,10 +158,8 @@ function createAction() {
 
 function populateList(listOfActions = [], list) {
 
-  console.log(listOfActions);
-
   list.innerHTML = listOfActions.map(action => {
-    return `<li> ${action} </li>`
+    return `<li>${action.name} - ${action.time}</li>`
   }).join('');
 
 }
