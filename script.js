@@ -129,6 +129,7 @@ function createAction() {
   if (event.type === "submit") {
 
     if (input.length != '') {
+
       if (date.getMinutes < 10) {
         action = {
           name: input,
@@ -148,7 +149,20 @@ function createAction() {
 
   } else {
 
-    listOfActions.push("Break");
+    if (date.getMinutes < 10) {
+      action = {
+        name: 'Break',
+        time: `${date.getHours()}:0${date.getMinutes()}`
+      }
+    } else {
+      action = {
+        name: 'Break',
+        time: `${date.getHours()}:${date.getMinutes()}`
+      }
+    }
+
+    listOfActions.push(action);
+    localStorage.setItem('items', JSON.stringify(listOfActions))
 
   }
 
