@@ -10,8 +10,9 @@ const list = document.getElementById("actions-list");
 const listOfActions = JSON.parse(localStorage.getItem('items')) || [];
 
 
-let isRunning = false
+let isRunning = false;
 let timerDuration = 1500;
+let userChoiceDuration = 1500;
 let timeLeft = 1500;
 let startCounter = 0;
 
@@ -68,7 +69,7 @@ function resetTimer() {
 
   clearInterval(setTimer);
   isRunning = false;
-  timerDuration = 1500
+  timerDuration = userChoiceDuration
   timeLeft = timerDuration;
   startCounter = 0;
 
@@ -200,6 +201,28 @@ function deleteAction(id) {
   return populateList();
 
 }
+
+function playerSetup() {
+
+
+  if(event.target.id === "minus") {
+    timerDuration -= 60;
+    displayTime(timerDuration)
+  }
+
+  if(event.target.id === "plus") {
+    timerDuration += 60;
+    displayTime(timerDuration)
+  }
+
+  timeLeft = timerDuration;
+  userChoiceDuration = timerDuration;
+
+}
+
+document.querySelectorAll(".action-break").forEach((btn) => {
+  btn.addEventListener('click', playerSetup)
+});
 
 form.addEventListener('submit', createAction);
 breakButton.addEventListener('click', shortBreak );
