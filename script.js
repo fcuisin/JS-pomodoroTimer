@@ -119,34 +119,85 @@ function createAction() {
   event.preventDefault();
 
   const input = document.getElementById("action").value;
-  let data = '';
+  let action = {
+    name: '',
+    time: '',
+  };
+  const date = new Date();
 
 
   if (event.type === "submit") {
 
     if (input.length != '') {
-      listOfActions.push(input);
+
+      if (date.getMinutes < 10) {
+        action = {
+          name: input,
+          time: `${date.getHours()}:0${date.getMinutes()}`
+        }
+      } else {
+        action = {
+          name: input,
+          time: `${date.getHours()}:${date.getMinutes()}`
+        }
+      }
+
+      listOfActions.push(action);
       localStorage.setItem('items', JSON.stringify(listOfActions))
       this.reset();
     }
 
   } else {
 
-    listOfActions.push("Break");
+    if (date.getMinutes < 10) {
+      action = {
+        name: 'Break',
+        time: `${date.getHours()}:0${date.getMinutes()}`
+      }
+    } else {
+      action = {
+        name: 'Break',
+        time: `${date.getHours()}:${date.getMinutes()}`
+      }
+    }
+
+    listOfActions.push(action);
+    localStorage.setItem('items', JSON.stringify(listOfActions))
 
   }
 
-  populateList(listOfActions, list)
+  populateList()
 
 }
 
-function populateList(listOfActions = [], list) {
+function populateList() {
 
-  console.log(listOfActions);
-
-  list.innerHTML = listOfActions.map(action => {
-    return `<li> ${action} </li>`
+  list.innerHTML = listOfActions.map((action, index) => {
+     return `
+      <div data-key=${index} class="action-item">
+        <li>${action.name} - ${action.time}</li>
+        <button class="delete-action"><i class="far fa-trash-alt"></i></button>
+      </div>
+    `
   }).join('');
+
+  const itemsToDelete = document.querySelectorAll(".delete-action");
+  itemsToDelete.forEach( item => {
+
+    item.addEventListener("click", function() {
+      return deleteAction(this.parentNode.dataset.key)
+    });
+
+  });
+
+}
+
+function deleteAction(id) {
+
+  listOfActions.splice(id, 1);
+  localStorage.setItem('items', JSON.stringify(listOfActions));
+
+  return populateList();
 
 }
 
@@ -156,5 +207,5 @@ startButton.addEventListener('click', () => { toggleClock(isRunning = true) });
 stopButton.addEventListener('click', () => { toggleClock(isRunning = false) });
 resetButton.addEventListener('click', resetTimer);
 initCircle();
-populateList(listOfActions, list);
+populateList();
 
