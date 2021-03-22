@@ -11,6 +11,7 @@ const listOfActions = JSON.parse(localStorage.getItem('items')) || [];
 
 
 let isRunning = false;
+let isBreak = false;
 let timerDuration = 1500;
 let userChoiceDuration = 1500;
 let timeLeft = 1500;
@@ -69,6 +70,7 @@ function resetTimer() {
 
   clearInterval(setTimer);
   isRunning = false;
+  isBreak = false;
   timerDuration = userChoiceDuration
   timeLeft = timerDuration;
   startCounter = 0;
@@ -102,6 +104,8 @@ function shortBreak() {
   timeLeft = timerDuration;
   isRunning = false;
   startCounter = 0;
+
+  isBreak = true;
 
   clearInterval(setTimer);
 
@@ -204,19 +208,22 @@ function deleteAction(id) {
 
 function playerSetup() {
 
+  if (isBreak != true) {
 
-  if(event.target.id === "minus") {
-    timerDuration -= 60;
-    displayTime(timerDuration)
+    if(event.target.id === "minus") {
+      timerDuration -= 60;
+      displayTime(timerDuration)
+    }
+
+    if(event.target.id === "plus") {
+      timerDuration += 60;
+      displayTime(timerDuration)
+    }
+
+    timeLeft = timerDuration;
+    userChoiceDuration = timerDuration;
+
   }
-
-  if(event.target.id === "plus") {
-    timerDuration += 60;
-    displayTime(timerDuration)
-  }
-
-  timeLeft = timerDuration;
-  userChoiceDuration = timerDuration;
 
 }
 
