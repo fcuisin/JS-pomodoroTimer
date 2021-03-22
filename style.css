@@ -80,6 +80,11 @@ h1, h2, h3, p, span, ul, li, button, input {
   color: #0e2431;
 }
 
+.far {
+  color: white;
+  margin-right: 10px;
+}
+
 #actions {
   border-left: 2px solid #f0f5f9;
   width: 40%;
@@ -97,7 +102,6 @@ h1, h2, h3, p, span, ul, li, button, input {
 }
 
 #actions-list {
-  margin: 20px 0px;
   list-style: none;
 }
 
@@ -122,12 +126,13 @@ h1, h2, h3, p, span, ul, li, button, input {
 form {
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 input[type="text"] {
   background-color: transparent;
-  border-bottom: 2px solid #f0f5f9;
-  border-width: 0 0 2px;
+  border: 1px solid #f0f5f9;
+  border-radius: 5px;
   outline: 0;
   color: white;
   margin: 0px 10px 0px 10px;
@@ -138,10 +143,11 @@ input[type="text"] {
 .user-setup {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .user-setup button {
-  margin: 0px 10px;
+  margin: 0px 20px;
   padding: 5px;
   background-color: transparent;
   border: 1px solid #ffa41b;

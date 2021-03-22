@@ -225,9 +225,13 @@ function playerSetup() {
 
   }
 
+  const userSessionLength = document.querySelector(".user-setup-duration");
+
+  userSessionLength.innerText = `${Math.floor((userChoiceDuration / 60) % 60)} min`;
+
 }
 
-document.querySelectorAll(".action-break").forEach((btn) => {
+document.querySelectorAll(".user-setup-variation").forEach((btn) => {
   btn.addEventListener('click', playerSetup)
 });
 
