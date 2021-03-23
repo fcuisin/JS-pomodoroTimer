@@ -135,7 +135,7 @@ function createAction() {
 
     if (input.length != '') {
 
-      if (date.getMinutes < 10) {
+      if (date.getMinutes() < 10) {
         action = {
           name: input,
           time: `${date.getHours()}:0${date.getMinutes()}`
@@ -154,7 +154,7 @@ function createAction() {
 
   } else {
 
-    if (date.getMinutes < 10) {
+    if (date.getMinutes() < 10) {
       action = {
         name: 'Break',
         time: `${date.getHours()}:0${date.getMinutes()}`
