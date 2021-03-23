@@ -35,13 +35,26 @@
     </div>
 
     <div id="actions">
+
       <h2 id="actions-title">MY WORKING JOURNEY</h2>
-      <form id="actions-form" autocomplete="off">
-        <input type="text" id="action">
-        <button type="submit" id="actions-submit"><i class="fas fa-plus"></i></button>
-      </form>
-      <div id="actions-list">
+
+      <div class="user-setup">
+        <i class="fas fa-clock"></i>
+        <p>Session length :</p>
+        <button class="user-setup-variation" id="minus">-</i></button>
+        <p class="user-setup-duration">25 min</p>
+        <button class="user-setup-variation" id="plus">+</button>
       </div>
+
+      <form id="actions-form" autocomplete="off">
+        <i class="fas fa-pen"></i>
+        <p>Type your action :</p>
+        <input type="text" id="action">
+        <button type="submit" id="actions-submit">Add</i></button>
+      </form>
+
+      <div id="actions-list"></div>
+
     </div>
 
   </div>

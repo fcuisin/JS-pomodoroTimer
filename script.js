@@ -10,8 +10,10 @@ const list = document.getElementById("actions-list");
 const listOfActions = JSON.parse(localStorage.getItem('items')) || [];
 
 
-let isRunning = false
+let isRunning = false;
+let isBreak = false;
 let timerDuration = 1500;
+let userChoiceDuration = 1500;
 let timeLeft = 1500;
 let startCounter = 0;
 
@@ -68,7 +70,8 @@ function resetTimer() {
 
   clearInterval(setTimer);
   isRunning = false;
-  timerDuration = 1500
+  isBreak = false;
+  timerDuration = userChoiceDuration
   timeLeft = timerDuration;
   startCounter = 0;
 
@@ -102,6 +105,8 @@ function shortBreak() {
   isRunning = false;
   startCounter = 0;
 
+  isBreak = true;
+
   clearInterval(setTimer);
 
   document.querySelectorAll(['[id^="pomodoro"]']).forEach((node) => {
@@ -130,7 +135,7 @@ function createAction() {
 
     if (input.length != '') {
 
-      if (date.getMinutes < 10) {
+      if (date.getMinutes() < 10) {
         action = {
           name: input,
           time: `${date.getHours()}:0${date.getMinutes()}`
@@ -149,7 +154,7 @@ function createAction() {
 
   } else {
 
-    if (date.getMinutes < 10) {
+    if (date.getMinutes() < 10) {
       action = {
         name: 'Break',
         time: `${date.getHours()}:0${date.getMinutes()}`
@@ -200,6 +205,35 @@ function deleteAction(id) {
   return populateList();
 
 }
+
+function playerSetup() {
+
+  if (isBreak != true) {
+
+    if(event.target.id === "minus") {
+      timerDuration -= 60;
+      displayTime(timerDuration)
+    }
+
+    if(event.target.id === "plus") {
+      timerDuration += 60;
+      displayTime(timerDuration)
+    }
+
+    timeLeft = timerDuration;
+    userChoiceDuration = timerDuration;
+
+  }
+
+  const userSessionLength = document.querySelector(".user-setup-duration");
+
+  userSessionLength.innerText = `${Math.floor((userChoiceDuration / 60) % 60)} min`;
+
+}
+
+document.querySelectorAll(".user-setup-variation").forEach((btn) => {
+  btn.addEventListener('click', playerSetup)
+});
 
 form.addEventListener('submit', createAction);
 breakButton.addEventListener('click', shortBreak );
