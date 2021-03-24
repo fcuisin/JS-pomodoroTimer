@@ -35,6 +35,7 @@ function toggleClock() {
   if(isRunning) {
 
     startCounter++;
+    breakButton.classList.remove("hidden");
 
     if(startCounter === 1) {
 
