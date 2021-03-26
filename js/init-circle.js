@@ -1,4 +1,4 @@
-import {timerDuration, timeLeft} from '/script.js';
+import {timerDuration, timeLeft} from '../script.js';
 
 const outline = document.querySelector(".moving-outline circle");
 const outlineLength = outline.getTotalLength();

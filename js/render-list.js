@@ -1,4 +1,4 @@
-import {listOfActions} from "/script.js";
+import {listOfActions} from "../script.js";
 
 const list = document.getElementById("actions-list");
 
