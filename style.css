@@ -22,6 +22,10 @@ h1, h2, h3, p, span, ul, li, button, input {
   color: white;
 }
 
+h1 {
+  font-size: 36px;
+}
+
 /* PLAYER CONTAINER */
 
 #player-container {
@@ -95,11 +99,13 @@ h1, h2, h3, p, span, ul, li, button, input {
 
 #actions {
   width: 40%;
-  margin-right: 50px;
+  margin-right: 100px;
   margin-bottom: 50px;
   margin-top: 100px;
-  padding: 0px 100px 0px 0px;
+  padding: 30px;
   overflow: scroll;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.40) 0px 10px 40px, rgba(0, 0, 0, 0.40) 0px 0px 10px;
 }
 
 #actions-title {
@@ -177,9 +183,6 @@ input[type="text"] {
 /* MOBILE RESPONSIVE DESIGN  */
 
 @media screen and (max-width: 640px) {
-  #actions {
-    padding: 0px 20px;
-  }
 
   #player-container {
     display:block;
@@ -189,6 +192,8 @@ input[type="text"] {
     margin: 0;
     width: 100%;
     border: 0;
+    padding: 0px 20px;
+    box-shadow: none;
   }
 }
 
