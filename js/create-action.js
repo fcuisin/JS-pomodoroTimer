@@ -1,4 +1,4 @@
-import {listOfActions} from "/script.js";
+import {listOfActions} from "../script.js";
 import {populateList} from "./render-list.js";
 
 const form = document.querySelector("#actions-form");
