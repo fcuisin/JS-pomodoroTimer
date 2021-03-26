@@ -22,6 +22,8 @@ h1, h2, h3, p, span, ul, li, button, input {
   color: white;
 }
 
+/* PLAYER CONTAINER */
+
 #player-container {
   height: 90vh;
   margin: 0 auto;
@@ -85,12 +87,18 @@ h1, h2, h3, p, span, ul, li, button, input {
   margin-right: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
+/* USER ACTIONS CONTAINER */
+
 #actions {
   width: 40%;
   margin-right: 50px;
   margin-bottom: 50px;
   margin-top: 100px;
-  padding: 0px 30px 0px 0px;
+  padding: 0px 100px 0px 0px;
   overflow: scroll;
 }
 
@@ -109,6 +117,10 @@ h1, h2, h3, p, span, ul, li, button, input {
 
 #actions-submit {
   margin: 0;
+}
+
+#actions-form-title {
+  display: flex;
 }
 
 .delete-action {
@@ -162,7 +174,13 @@ input[type="text"] {
   color: #ffa41b;
 }
 
+/* MOBILE RESPONSIVE DESIGN  */
+
 @media screen and (max-width: 640px) {
+  #actions {
+    padding: 0px 20px;
+  }
+
   #player-container {
     display:block;
   }
@@ -171,5 +189,21 @@ input[type="text"] {
     margin: 0;
     width: 100%;
     border: 0;
+  }
+}
+
+@media screen and (max-width: 376px) {
+
+  input[type="text"] {
+    width: 70%;
+    margin: 0px 15px;
+  }
+
+  #actions-form {
+    display:block;
+  }
+
+  .user-setup button {
+    margin: 0px 10px;
   }
 }
